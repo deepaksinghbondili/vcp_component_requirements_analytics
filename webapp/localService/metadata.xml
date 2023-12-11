@@ -1,0 +1,2365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Analytics" Namespace="com.sap.vocabularies.Analytics.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Analytic" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="getWeeklySalesData" EntityType="Analytic.getWeeklySalesData" sap:semantics="aggregate"/>
+                <EntitySet Name="getComponentReq" EntityType="Analytic.getComponentReq" sap:semantics="aggregate"/>
+                <EntitySet Name="getUnqCharQty" EntityType="Analytic.getUnqCharQty" sap:semantics="aggregate"/>
+            </EntityContainer>
+            <EntityType Name="getWeeklySalesData" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="ID__"/>
+                </Key>
+                <Property Name="ID__" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SALES_DOC" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Sales Doc."/>
+                <Property Name="SALESDOC_ITEM" Type="Edm.String" MaxLength="6" sap:aggregation-role="dimension" sap:label="SalesDoc. Item"/>
+                <Property Name="REF_PRODID" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="Config Products"/>
+                <Property Name="PRODUCT_ID" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="Product ID"/>
+                <Property Name="UNIQUE_ID" Type="Edm.Int32" sap:aggregation-role="dimension" sap:label="Unique ID"/>
+                <Property Name="PRIMARY_ID" Type="Edm.Int32" sap:aggregation-role="dimension" sap:label="Primary ID"/>
+                <Property Name="DOC_CREATEDDATE" Type="Edm.DateTime" sap:aggregation-role="dimension" sap:label="Doc. Created Date" sap:display-format="Date"/>
+                <Property Name="SCHEDULELINE_NUM" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Schedule Line Number"/>
+                <Property Name="REASON_REJ" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Reason Rej"/>
+                <Property Name="UOM" Type="Edm.String" MaxLength="3" sap:label="UOM"/>
+                <Property Name="CONFIRMED_QTY" Type="Edm.Decimal" Scale="3" Precision="13" sap:aggregation-role="measure" sap:label="Confirmed Qty."/>
+                <Property Name="ORD_QTY" Type="Edm.Decimal" Scale="3" Precision="13" sap:aggregation-role="measure" sap:label="Ord Qty"/>
+                <Property Name="MAT_AVAILDATE" Type="Edm.DateTime" sap:aggregation-role="dimension" sap:label="Mat. Avail Date" sap:display-format="Date"/>
+                <Property Name="WEEK_DATE" Type="Edm.DateTime" sap:aggregation-role="dimension" sap:label="Week Date" sap:display-format="Date"/>
+                <Property Name="PERIODDESC" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:label="Period Desc"/>
+                <Property Name="NET_VALUE" Type="Edm.Decimal" Scale="2" Precision="15" sap:aggregation-role="dimension" sap:label="Net Value"/>
+                <Property Name="CUSTOMER_GROUP" Type="Edm.String" MaxLength="20" sap:aggregation-role="dimension" sap:label="Customer Group"/>
+                <Property Name="LOCATION_ID" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Demand Location"/>
+                <Property Name="SALE_LOCATION" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Sale Location"/>
+                <Property Name="PLAN_LOC" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Plan Location"/>
+                <Property Name="FACTORY_LOC" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Factory Location"/>
+                <Property Name="SEEDORD_CHK" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Seed Order Chk"/>
+                <Property Name="SALES_ORG" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Sales Org"/>
+                <Property Name="DISTR_CHANNEL" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="DISTR Channel"/>
+                <Property Name="DIVISION" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:label="Division"/>
+                <Property Name="SAL_DOCU_TYPE" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Sales Doc Type"/>
+                <Property Name="ITEM_CREATED_DATE" Type="Edm.DateTime" sap:aggregation-role="dimension" sap:label="Item Created Date" sap:display-format="Date"/>
+                <Property Name="ITEM_CHANGE_DATE" Type="Edm.DateTime" sap:aggregation-role="dimension" sap:label="Item Change Date" sap:display-format="Date"/>
+                <Property Name="IBP_CUSTOMER" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="IBP Customer"/>
+                <Property Name="RELEVENT_FOR_PLAN" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="Relevent For Plan"/>
+                <Property Name="ON_HAND_STOCK" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="On Hand Stock"/>
+                <Property Name="IN_TRANSIT" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:label="In Transit"/>
+                <Property Name="SHIP_FROM_LOC" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:label="Ship from Location"/>
+                <Property Name="CHANGED_DATE" Type="Edm.DateTime" sap:aggregation-role="dimension" sap:label="Changed Date" sap:display-format="Date"/>
+                <Property Name="CHANGED_BY" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="Changed By"/>
+                <Property Name="CREATED_DATE" Type="Edm.DateTime" sap:aggregation-role="dimension" sap:label="Created Date" sap:display-format="Date"/>
+                <Property Name="CREATED_BY" Type="Edm.String" MaxLength="12" sap:aggregation-role="dimension" sap:label="Created By"/>
+                <Property Name="CHANGED_TIME" Type="Edm.Time" sap:aggregation-role="dimension" sap:label="Changed Time"/>
+                <Property Name="CREATED_TIME" Type="Edm.Time" sap:aggregation-role="dimension" sap:label="Created Time"/>
+            </EntityType>
+            <EntityType Name="getComponentReq" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="ID__"/>
+                </Key>
+                <Property Name="ID__" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LOCATION_ID" Type="Edm.String" MaxLength="4" Nullable="false" sap:aggregation-role="dimension" sap:label="Demand Location"/>
+                <Property Name="PRODUCT_ID" Type="Edm.String" MaxLength="40" Nullable="false" sap:aggregation-role="dimension" sap:label="Product ID"/>
+                <Property Name="WEEK_DATE" Type="Edm.DateTime" Nullable="false" sap:aggregation-role="dimension" sap:label="Week Date" sap:display-format="Date"/>
+                <Property Name="FACTORY_LOC" Type="Edm.String" MaxLength="4" Nullable="false" sap:aggregation-role="dimension" sap:label="Factory location"/>
+                <Property Name="VERSION" Type="Edm.String" MaxLength="10" Nullable="false" sap:aggregation-role="dimension" sap:label="Version"/>
+                <Property Name="SCENARIO" Type="Edm.String" MaxLength="32" Nullable="false" sap:aggregation-role="dimension" sap:label="Scenario"/>
+                <Property Name="ASSEMBLY" Type="Edm.String" MaxLength="40" Nullable="false" sap:aggregation-role="dimension" sap:label="Assembly"/>
+                <Property Name="COMPONENT" Type="Edm.String" MaxLength="40" Nullable="false" sap:aggregation-role="dimension" sap:label="Component"/>
+                <Property Name="MODEL_VERSION" Type="Edm.String" MaxLength="20" Nullable="false" sap:aggregation-role="dimension" sap:label="Model Version"/>
+                <Property Name="IBP_DEMAND" Type="Edm.Decimal" Scale="3" Precision="18" Nullable="false" sap:aggregation-role="dimension" sap:label="Ibp Demand"/>
+                <Property Name="ASMB_DESC" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="Assembly Description"/>
+                <Property Name="COMP_DESC" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:label="Component Description"/>
+                <Property Name="STRUC_NODE" Type="Edm.String" MaxLength="50" sap:aggregation-role="dimension" sap:label="Structure Node"/>
+                <Property Name="ASM_COM_QTY" Type="Edm.Int32" sap:aggregation-role="measure" sap:label="Assembly Component Quantity"/>
+                <Property Name="COMP_QTY" Type="Edm.Decimal" Scale="3" Precision="28" sap:aggregation-role="measure" sap:label="Component Quantity Req"/>
+                <Property Name="ROW_COUNT" Type="Edm.Int32" Nullable="false" sap:aggregation-role="measure" sap:label="COUNT"/>
+                <Property Name="ACT_ASSEM_QTY" Type="Edm.Decimal" Scale="3" Precision="18" sap:aggregation-role="measure" sap:label="Assembly Quantity Req"/>
+            </EntityType>
+            <EntityType Name="getUnqCharQty" sap:semantics="aggregate">
+                <Key>
+                    <PropertyRef Name="ID__"/>
+                </Key>
+                <Property Name="ID__" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LOCATION_ID" Type="Edm.String" MaxLength="4" Nullable="false" sap:aggregation-role="dimension" sap:label="Demand Location"/>
+                <Property Name="PRODUCT_ID" Type="Edm.String" MaxLength="40" Nullable="false" sap:aggregation-role="dimension" sap:label="Partial Product"/>
+                <Property Name="REF_PRODID" Type="Edm.String" MaxLength="40" Nullable="false" sap:aggregation-role="dimension" sap:label="Config Products"/>
+                <Property Name="WEEK_DATE" Type="Edm.DateTime" Nullable="false" sap:aggregation-role="dimension" sap:label="Week Date" sap:display-format="Date"/>
+                <Property Name="CIR_ID" Type="Edm.Int32" Nullable="false" sap:aggregation-role="dimension" sap:label="CIR ID"/>
+                <Property Name="MODEL_VERSION" Type="Edm.String" MaxLength="20" Nullable="false" sap:aggregation-role="dimension" sap:label="Model Version"/>
+                <Property Name="VERSION" Type="Edm.String" MaxLength="10" Nullable="false" sap:aggregation-role="dimension" sap:label="Version"/>
+                <Property Name="SCENARIO" Type="Edm.String" MaxLength="32" Nullable="false" sap:aggregation-role="dimension" sap:label="Scenario"/>
+                <Property Name="UNIQUE_ID" Type="Edm.Int32" Nullable="false" sap:aggregation-role="dimension" sap:label="Unique ID"/>
+                <Property Name="CIR_QTY" Type="Edm.Int32" sap:aggregation-role="measure" sap:label="Forecast Order Quantity"/>
+                <Property Name="CHAR_DESC" Type="Edm.String" MaxLength="160" sap:aggregation-role="dimension" sap:label="Characteristic Description"/>
+                <Property Name="CHARVAL_DESC" Type="Edm.String" MaxLength="160" sap:aggregation-role="dimension" sap:label="Characteristic Value Description"/>
+                <Property Name="CHAR_NUM" Type="Edm.String" MaxLength="100" Nullable="false" sap:aggregation-role="dimension" sap:label="Characteristic"/>
+                <Property Name="CHAR_NAME" Type="Edm.String" MaxLength="80" sap:aggregation-role="dimension" sap:label="Characteristic Name"/>
+                <Property Name="CHARVAL_NUM" Type="Edm.String" MaxLength="80" Nullable="false" sap:aggregation-role="dimension" sap:label="Characteristic Value"/>
+                <Property Name="CHAR_VALUE" Type="Edm.String" MaxLength="80" sap:aggregation-role="dimension" sap:label="Characteristic Value Name"/>
+            </EntityType>
+            <Annotations Target="Analytic.getWeeklySalesData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="GroupableProperties">
+                            <Collection>
+                                <PropertyPath>SALES_DOC</PropertyPath>
+                                <PropertyPath>REF_PRODID</PropertyPath>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                                <PropertyPath>UNIQUE_ID</PropertyPath>
+                                <PropertyPath>DOC_CREATEDDATE</PropertyPath>
+                                <PropertyPath>MAT_AVAILDATE</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>PERIODDESC</PropertyPath>
+                                <PropertyPath>CUSTOMER_GROUP</PropertyPath>
+                                <PropertyPath>LOCATION_ID</PropertyPath>
+                                <PropertyPath>SALE_LOCATION</PropertyPath>
+                                <PropertyPath>PLAN_LOC</PropertyPath>
+                                <PropertyPath>FACTORY_LOC</PropertyPath>
+                                <PropertyPath>SALES_ORG</PropertyPath>
+                                <PropertyPath>DISTR_CHANNEL</PropertyPath>
+                                <PropertyPath>DIVISION</PropertyPath>
+                                <PropertyPath>SAL_DOCU_TYPE</PropertyPath>
+                                <PropertyPath>ON_HAND_STOCK</PropertyPath>
+                                <PropertyPath>IN_TRANSIT</PropertyPath>
+                                <PropertyPath>SHIP_FROM_LOC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="AggregatableProperties">
+                            <Collection>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="CONFIRMED_QTY"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ORD_QTY"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>bottompercent</String>
+                                <String>bottomsum</String>
+                                <String>bottomcount</String>
+                                <String>identity</String>
+                                <String>concat</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                                <String>expand</String>
+                                <String>search</String>
+                                <String>compute</String>
+                                <String>topcount</String>
+                                <String>toppercent</String>
+                                <String>topsum</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>LOCATION_ID</PropertyPath>
+                        <PropertyPath>REF_PRODID</PropertyPath>
+                        <PropertyPath>UNIQUE_ID</PropertyPath>
+                        <PropertyPath>PRODUCT_ID</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Chart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Total Quantity By WeekDate"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>ORD_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SALES_DOC"/>
+                            <PropertyValue Property="Label" String="Sales Doc."/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PRODUCT_ID"/>
+                            <PropertyValue Property="Label" String="Product ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="REF_PRODID"/>
+                            <PropertyValue Property="Label" String="Config Product"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="WEEK_DATE"/>
+                            <PropertyValue Property="Label" String="Week Date"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UNIQUE_ID"/>
+                            <PropertyValue Property="Label" String="Unique ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LOCATION_ID"/>
+                            <PropertyValue Property="Label" String="Location ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ORD_QTY"/>
+                            <PropertyValue Property="Label" String="Ordered Qty"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="pvProd">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.Chart#prodChart</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="prodChart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Ordered Quantity By Product ID"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>ORD_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.EntityContainer/getWeeklySalesData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="GroupableProperties">
+                            <Collection>
+                                <PropertyPath>SALES_DOC</PropertyPath>
+                                <PropertyPath>REF_PRODID</PropertyPath>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                                <PropertyPath>UNIQUE_ID</PropertyPath>
+                                <PropertyPath>DOC_CREATEDDATE</PropertyPath>
+                                <PropertyPath>MAT_AVAILDATE</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>PERIODDESC</PropertyPath>
+                                <PropertyPath>CUSTOMER_GROUP</PropertyPath>
+                                <PropertyPath>LOCATION_ID</PropertyPath>
+                                <PropertyPath>SALE_LOCATION</PropertyPath>
+                                <PropertyPath>PLAN_LOC</PropertyPath>
+                                <PropertyPath>FACTORY_LOC</PropertyPath>
+                                <PropertyPath>SALES_ORG</PropertyPath>
+                                <PropertyPath>DISTR_CHANNEL</PropertyPath>
+                                <PropertyPath>DIVISION</PropertyPath>
+                                <PropertyPath>SAL_DOCU_TYPE</PropertyPath>
+                                <PropertyPath>ON_HAND_STOCK</PropertyPath>
+                                <PropertyPath>IN_TRANSIT</PropertyPath>
+                                <PropertyPath>SHIP_FROM_LOC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="AggregatableProperties">
+                            <Collection>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="CONFIRMED_QTY"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ORD_QTY"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>bottompercent</String>
+                                <String>bottomsum</String>
+                                <String>bottomcount</String>
+                                <String>identity</String>
+                                <String>concat</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                                <String>expand</String>
+                                <String>search</String>
+                                <String>compute</String>
+                                <String>topcount</String>
+                                <String>toppercent</String>
+                                <String>topsum</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="pvProd">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.Chart#prodChart</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/ID__" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SALES_DOC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Sales Doc."/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SALESDOC_ITEM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="SalesDoc. Item"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/REF_PRODID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Config Products"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getWeeklySalesData"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="ValueListProperty" String="REF_PRODID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="REF_PRODID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/PRODUCT_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Product ID"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getWeeklySalesData"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="REF_PRODID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="REF_PRODID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/UNIQUE_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Unique ID"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getWeeklySalesData"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="REF_PRODID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="REF_PRODID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/PRIMARY_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Primary ID"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/DOC_CREATEDDATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Doc. Created Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SCHEDULELINE_NUM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Schedule Line Number"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/REASON_REJ" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Reason Rej"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/UOM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="UOM"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CONFIRMED_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Confirmed Qty."/>
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/ORD_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Ord Qty"/>
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/MAT_AVAILDATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Mat. Avail Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/WEEK_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Week Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/PERIODDESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Period Desc"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/NET_VALUE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Net Value"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CUSTOMER_GROUP" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Customer Group"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/LOCATION_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Demand Location"/>
+                <Annotation Term="Common.SemanticObject" Path="LOCATION_ID"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getWeeklySalesData"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="REF_PRODID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="REF_PRODID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SALE_LOCATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Sale Location"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/PLAN_LOC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Plan Location"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/FACTORY_LOC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Factory Location"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SEEDORD_CHK" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Seed Order Chk"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SALES_ORG" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Sales Org"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/DISTR_CHANNEL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="DISTR Channel"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/DIVISION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Division"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SAL_DOCU_TYPE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Sales Doc Type"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/ITEM_CREATED_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Item Created Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/ITEM_CHANGE_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Item Change Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/IBP_CUSTOMER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="IBP Customer"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/RELEVENT_FOR_PLAN" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Relevent For Plan"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/ON_HAND_STOCK" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="On Hand Stock"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/IN_TRANSIT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="In Transit"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/SHIP_FROM_LOC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Ship from Location"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CHANGED_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CHANGED_BY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CREATED_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CREATED_BY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CHANGED_TIME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed Time"/>
+            </Annotations>
+            <Annotations Target="Analytic.getWeeklySalesData/CREATED_TIME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created Time"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="GroupableProperties">
+                            <Collection>
+                                <PropertyPath>LOCATION_ID</PropertyPath>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>FACTORY_LOC</PropertyPath>
+                                <PropertyPath>VERSION</PropertyPath>
+                                <PropertyPath>SCENARIO</PropertyPath>
+                                <PropertyPath>ASSEMBLY</PropertyPath>
+                                <PropertyPath>COMP_DESC</PropertyPath>
+                                <PropertyPath>MODEL_VERSION</PropertyPath>
+                                <PropertyPath>IBP_DEMAND</PropertyPath>
+                                <PropertyPath>ASMB_DESC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="AggregatableProperties">
+                            <Collection>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ASM_COM_QTY"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="COMP_QTY"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ROW_COUNT"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ACT_ASSEM_QTY"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>bottompercent</String>
+                                <String>bottomsum</String>
+                                <String>bottomcount</String>
+                                <String>identity</String>
+                                <String>concat</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                                <String>expand</String>
+                                <String>search</String>
+                                <String>compute</String>
+                                <String>topcount</String>
+                                <String>toppercent</String>
+                                <String>topsum</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="donut">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Version Comparision"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>ASMB_DESC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>ASM_COM_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="heat">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="Version Comparision"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/HeatMap"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>ASMB_DESC</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>ACT_ASSEM_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="ASMB_DESC"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>COMP_DESC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>COMP_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="COMP_DESC"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="COMP_QTY"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FACTORY_LOC"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="VERSION"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SCENARIO"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PRODUCT_ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ASMB_DESC"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="COMP_DESC"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="WEEK_DATE"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="COMP_QTY"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>FACTORY_LOC</PropertyPath>
+                        <PropertyPath>PRODUCT_ID</PropertyPath>
+                        <PropertyPath>STRUC_NODE</PropertyPath>
+                        <PropertyPath>ASMB_DESC</PropertyPath>
+                        <PropertyPath>COMPONENT</PropertyPath>
+                        <PropertyPath>VERSION</PropertyPath>
+                        <PropertyPath>SCENARIO</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.EntityContainer/getComponentReq" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="GroupableProperties">
+                            <Collection>
+                                <PropertyPath>LOCATION_ID</PropertyPath>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>FACTORY_LOC</PropertyPath>
+                                <PropertyPath>VERSION</PropertyPath>
+                                <PropertyPath>SCENARIO</PropertyPath>
+                                <PropertyPath>ASSEMBLY</PropertyPath>
+                                <PropertyPath>COMP_DESC</PropertyPath>
+                                <PropertyPath>MODEL_VERSION</PropertyPath>
+                                <PropertyPath>IBP_DEMAND</PropertyPath>
+                                <PropertyPath>ASMB_DESC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="AggregatableProperties">
+                            <Collection>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ASM_COM_QTY"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="COMP_QTY"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ROW_COUNT"/>
+                                </Record>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="ACT_ASSEM_QTY"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>bottompercent</String>
+                                <String>bottomsum</String>
+                                <String>bottomcount</String>
+                                <String>identity</String>
+                                <String>concat</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                                <String>expand</String>
+                                <String>search</String>
+                                <String>compute</String>
+                                <String>topcount</String>
+                                <String>toppercent</String>
+                                <String>topsum</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/ID__" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/LOCATION_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Demand Location"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/PRODUCT_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Product ID"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/WEEK_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Week Date"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/FACTORY_LOC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Factory location"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Version"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/SCENARIO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Scenario"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/ASSEMBLY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Assembly"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASMB_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASMB_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/COMPONENT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Component"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMP_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMP_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/MODEL_VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Model Version"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/IBP_DEMAND" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Ibp Demand"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/ASMB_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Assembly Description"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASMB_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASMB_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/COMP_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Component Description"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/STRUC_NODE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Structure Node"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMP_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMP_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/ASM_COM_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+                <Annotation Term="Common.Label" String="Assembly Component Quantity"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/COMP_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+                <Annotation Term="Common.Label" String="Component Quantity Req"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/ROW_COUNT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+                <Annotation Term="Common.Label" String="COUNT"/>
+            </Annotations>
+            <Annotations Target="Analytic.getComponentReq/ACT_ASSEM_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+                <Annotation Term="Common.Label" String="Assembly Quantity Req"/>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="GroupableProperties">
+                            <Collection>
+                                <PropertyPath>LOCATION_ID</PropertyPath>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>VERSION</PropertyPath>
+                                <PropertyPath>SCENARIO</PropertyPath>
+                                <PropertyPath>CIR_ID</PropertyPath>
+                                <PropertyPath>CHAR_DESC</PropertyPath>
+                                <PropertyPath>CHARVAL_DESC</PropertyPath>
+                                <PropertyPath>CHAR_NUM</PropertyPath>
+                                <PropertyPath>CHAR_NAME</PropertyPath>
+                                <PropertyPath>CHAR_VALUE</PropertyPath>
+                                <PropertyPath>CHARVAL_NUM</PropertyPath>
+                                <PropertyPath>MODEL_VERSION</PropertyPath>
+                                <PropertyPath>REF_PRODID</PropertyPath>
+                                <PropertyPath>UNIQUE_ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="AggregatableProperties">
+                            <Collection>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="CIR_QTY"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>bottompercent</String>
+                                <String>bottomsum</String>
+                                <String>bottomcount</String>
+                                <String>identity</String>
+                                <String>concat</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                                <String>expand</String>
+                                <String>search</String>
+                                <String>compute</String>
+                                <String>topcount</String>
+                                <String>toppercent</String>
+                                <String>topsum</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>CHAR_DESC</PropertyPath>
+                        <PropertyPath>CHARVAL_DESC</PropertyPath>
+                        <PropertyPath>WEEK_DATE</PropertyPath>
+                        <PropertyPath>UNIQUE_ID</PropertyPath>
+                        <PropertyPath>LOCATION_ID</PropertyPath>
+                        <PropertyPath>PRODUCT_ID</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="line">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>LOCATION_ID</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="LOCATION_ID"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>CIR_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="heat">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/HeatMap"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>CIR_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="donut">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>UNIQUE_ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>CIR_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>CHAR_DESC</PropertyPath>
+                                <PropertyPath>CHARVAL_DESC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>CIR_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LOCATION_ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PRODUCT_ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="REF_PRODID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CHAR_DESC"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CHARVAL_DESC"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UNIQUE_ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="WEEK_DATE"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CIR_QTY"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record Type="HTML5.CssDefaultsType">
+                                    <PropertyValue Property="width" String="auto"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.EntityContainer/getUnqCharQty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="GroupableProperties">
+                            <Collection>
+                                <PropertyPath>LOCATION_ID</PropertyPath>
+                                <PropertyPath>PRODUCT_ID</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                                <PropertyPath>VERSION</PropertyPath>
+                                <PropertyPath>SCENARIO</PropertyPath>
+                                <PropertyPath>CIR_ID</PropertyPath>
+                                <PropertyPath>CHAR_DESC</PropertyPath>
+                                <PropertyPath>CHARVAL_DESC</PropertyPath>
+                                <PropertyPath>CHAR_NUM</PropertyPath>
+                                <PropertyPath>CHAR_NAME</PropertyPath>
+                                <PropertyPath>CHAR_VALUE</PropertyPath>
+                                <PropertyPath>CHARVAL_NUM</PropertyPath>
+                                <PropertyPath>MODEL_VERSION</PropertyPath>
+                                <PropertyPath>REF_PRODID</PropertyPath>
+                                <PropertyPath>UNIQUE_ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="AggregatableProperties">
+                            <Collection>
+                                <Record Type="Aggregation.AggregatablePropertyType">
+                                    <PropertyValue Property="Property" PropertyPath="CIR_QTY"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>bottompercent</String>
+                                <String>bottomsum</String>
+                                <String>bottomcount</String>
+                                <String>identity</String>
+                                <String>concat</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                                <String>expand</String>
+                                <String>search</String>
+                                <String>compute</String>
+                                <String>topcount</String>
+                                <String>toppercent</String>
+                                <String>topsum</String>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/ID__" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/LOCATION_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Demand Location"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/PRODUCT_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Partial Product"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/REF_PRODID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Config Products"/>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/WEEK_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Week Date"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CIR_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="CIR ID"/>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/MODEL_VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Model Version"/>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Version"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/SCENARIO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Scenario"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/UNIQUE_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Unique ID"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CIR_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+                <Annotation Term="Common.Label" String="Forecast Order Quantity"/>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CHAR_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Characteristic Description"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CHARVAL_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Characteristic Value Description"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CHAR_NUM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Characteristic"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CHAR_NAME" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Characteristic Name"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CHARVAL_NUM" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Characteristic Value"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Analytic.getUnqCharQty/CHAR_VALUE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Characteristic Value Name"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getUnqCharQty"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_NAME"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_NAME"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHAR_VALUE"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHAR_VALUE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CHARVAL_NUM"/>
+                                    <PropertyValue Property="ValueListProperty" String="CHARVAL_NUM"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="ValueListProperty" String="WEEK_DATE"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UNIQUE_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="UNIQUE_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
