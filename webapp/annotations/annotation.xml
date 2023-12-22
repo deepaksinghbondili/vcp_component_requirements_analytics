@@ -9,9 +9,7 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
     </edmx:Reference>
-     <edmx:Reference Uri="/v2/ <edmx:Reference Uri="/v2/analytic/$metadata">
-        <edmx:Include Namespace="Analytic"/>
-    </edmx:Reference>/$metadata">
+     <edmx:Reference Uri="/v2/analytic/$metadata">
         <edmx:Include Namespace="Analytic"/>
     </edmx:Reference>
     <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
