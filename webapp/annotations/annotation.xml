@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+<edmx:Edmx Version="4.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
     <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
     </edmx:Reference>
@@ -9,11 +9,8 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
     </edmx:Reference>
-     <edmx:Reference Uri="/v2/analytic/$metadata">
+    <edmx:Reference Uri="/v2/analytic/$metadata">
         <edmx:Include Namespace="Analytic"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
     </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
@@ -23,61 +20,7 @@
     </edmx:Reference>
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="local" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-             <Annotations Target="Analytic.getComponentReq" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                <Annotation Term="Aggregation.ApplySupported">
-                    <Record Type="Aggregation.ApplySupportedType">
-                        <PropertyValue Property="GroupableProperties">
-                            <Collection>
-                                <PropertyPath>LOCATION_ID</PropertyPath>
-                                <PropertyPath>PRODUCT_ID</PropertyPath>
-                                <PropertyPath>WEEK_DATE</PropertyPath>
-                                <PropertyPath>FACTORY_LOC</PropertyPath>
-                                <PropertyPath>VERSION</PropertyPath>
-                                <PropertyPath>SCENARIO</PropertyPath>
-                                <PropertyPath>ASSEMBLY</PropertyPath>
-                                <PropertyPath>COMP_DESC</PropertyPath>
-                                <PropertyPath>MODEL_VERSION</PropertyPath>
-                                <PropertyPath>IBP_DEMAND</PropertyPath>
-                                <PropertyPath>ASMB_DESC</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="AggregatableProperties">
-                            <Collection>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="ASM_COM_QTY"/>
-                                </Record>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="COMP_QTY"/>
-                                </Record>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="ROW_COUNT"/>
-                                </Record>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="ACT_ASSEM_QTY"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
-                        <PropertyValue Property="Transformations">
-                            <Collection>
-                                <String>aggregate</String>
-                                <String>bottompercent</String>
-                                <String>bottomsum</String>
-                                <String>bottomcount</String>
-                                <String>identity</String>
-                                <String>concat</String>
-                                <String>groupby</String>
-                                <String>filter</String>
-                                <String>expand</String>
-                                <String>search</String>
-                                <String>compute</String>
-                                <String>topcount</String>
-                                <String>toppercent</String>
-                                <String>topsum</String>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
+            <Annotations Target="Analytic.getComponentReq" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="UI.PresentationVariant">
                     <Record Type="UI.PresentationVariantType">
                         <PropertyValue Property="SortOrder">
@@ -90,12 +33,13 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <Annotation Term="UI.Chart" Qualifier="donut">
+                <Annotation Term="UI.Chart" Qualifier="bar">
                     <Record Type="UI.ChartDefinitionType">
-                        <PropertyValue Property="Title" String="Version Comparision"/>
-                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="Title" String=""/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
                         <PropertyValue Property="Dimensions">
                             <Collection>
+                                <PropertyPath>COMP_DESC</PropertyPath>
                                 <PropertyPath>ASMB_DESC</PropertyPath>
                             </Collection>
                         </PropertyValue>
@@ -106,9 +50,38 @@
                         </PropertyValue>
                     </Record>
                 </Annotation>
-                <Annotation Term="UI.Chart" Qualifier="heat">
+                <Annotation Term="UI.Chart" Qualifier="heat1">
                     <Record Type="UI.ChartDefinitionType">
-                        <PropertyValue Property="Title" String="Version Comparision"/>
+                        <PropertyValue Property="Title" String=""/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/HeatMap"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>COMP_DESC</PropertyPath>
+                                <PropertyPath>WEEK_DATE</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>ACT_ASSEM_QTY</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="COMP_DESC"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="WEEK_DATE"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="heat2">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String=""/>
                         <PropertyValue Property="ChartType" EnumMember="UI.ChartType/HeatMap"/>
                         <PropertyValue Property="Dimensions">
                             <Collection>
@@ -249,82 +222,14 @@
                 </Annotation>
                 <Annotation Term="UI.SelectionFields">
                     <Collection>
+                        <PropertyPath>COMP_DESC</PropertyPath>
                         <PropertyPath>FACTORY_LOC</PropertyPath>
                         <PropertyPath>PRODUCT_ID</PropertyPath>
                         <PropertyPath>STRUC_NODE</PropertyPath>
                         <PropertyPath>ASMB_DESC</PropertyPath>
-                        <PropertyPath>COMPONENT</PropertyPath>
                         <PropertyPath>VERSION</PropertyPath>
                         <PropertyPath>SCENARIO</PropertyPath>
                     </Collection>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="Analytic.EntityContainer/getComponentReq" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                <Annotation Term="Aggregation.ApplySupported">
-                    <Record Type="Aggregation.ApplySupportedType">
-                        <PropertyValue Property="GroupableProperties">
-                            <Collection>
-                                <PropertyPath>LOCATION_ID</PropertyPath>
-                                <PropertyPath>PRODUCT_ID</PropertyPath>
-                                <PropertyPath>WEEK_DATE</PropertyPath>
-                                <PropertyPath>FACTORY_LOC</PropertyPath>
-                                <PropertyPath>VERSION</PropertyPath>
-                                <PropertyPath>SCENARIO</PropertyPath>
-                                <PropertyPath>ASSEMBLY</PropertyPath>
-                                <PropertyPath>COMP_DESC</PropertyPath>
-                                <PropertyPath>MODEL_VERSION</PropertyPath>
-                                <PropertyPath>IBP_DEMAND</PropertyPath>
-                                <PropertyPath>ASMB_DESC</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="AggregatableProperties">
-                            <Collection>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="ASM_COM_QTY"/>
-                                </Record>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="COMP_QTY"/>
-                                </Record>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="ROW_COUNT"/>
-                                </Record>
-                                <Record Type="Aggregation.AggregatablePropertyType">
-                                    <PropertyValue Property="Property" PropertyPath="ACT_ASSEM_QTY"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
-                        <PropertyValue Property="Transformations">
-                            <Collection>
-                                <String>aggregate</String>
-                                <String>bottompercent</String>
-                                <String>bottomsum</String>
-                                <String>bottomcount</String>
-                                <String>identity</String>
-                                <String>concat</String>
-                                <String>groupby</String>
-                                <String>filter</String>
-                                <String>expand</String>
-                                <String>search</String>
-                                <String>compute</String>
-                                <String>topcount</String>
-                                <String>toppercent</String>
-                                <String>topsum</String>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-                <Annotation Term="UI.PresentationVariant">
-                    <Record Type="UI.PresentationVariantType">
-                        <PropertyValue Property="SortOrder">
-                            <Collection>
-                                <Record Type="Common.SortOrderType">
-                                    <PropertyValue Property="Property" PropertyPath="WEEK_DATE"/>
-                                    <PropertyValue Property="Descending" Bool="false"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
                 </Annotation>
             </Annotations>
             <Annotations Target="Analytic.getComponentReq/ID__" xmlns="http://docs.oasis-open.org/odata/ns/edm">
@@ -679,6 +584,51 @@
             <Annotations Target="Analytic.getComponentReq/COMP_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Component Description"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMP_DESC"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMP_DESC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="COMPONENT"/>
+                                    <PropertyValue Property="ValueListProperty" String="COMPONENT"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="PRODUCT_ID"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCT_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ASSEMBLY"/>
+                                    <PropertyValue Property="ValueListProperty" String="ASSEMBLY"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="FACTORY_LOC"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FACTORY_LOC"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"/>
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"/>
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="LOCATION_ID"/>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="LOCATION_ID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="STRUC_NODE"/>
+                                    <PropertyValue Property="ValueListProperty" String="STRUC_NODE"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
             </Annotations>
             <Annotations Target="Analytic.getComponentReq/STRUC_NODE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>

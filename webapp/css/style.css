@@ -11,3 +11,7 @@
 .panel{
     margin-top: 2rem !important;
 }
+
+div[id*="__bar0"] {
+    border-radius: 10px 10px 10px !important;
+}
