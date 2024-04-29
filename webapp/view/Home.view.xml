@@ -9,7 +9,7 @@
         </f:title>
         <f:header>
             <f:DynamicPageHeader>
-                <smartfilterbar:SmartFilterBar id="smartFilterBar" entitySet="getComponentReq" showClearOnFB="true" liveMode="true" persistencyKey="PKeyFilterbar" smartVariant="PageVariant">
+                <smartfilterbar:SmartFilterBar id="smartFilterBar" entitySet="getComponentReq" showClearOnFB="true" liveMode="true" persistencyKey="PKeyFilterbar" smartVariant="PageVariant" clear="onClear">
                     <smartfilterbar:controlConfiguration>
                         <smartfilterbar:ControlConfiguration key="WEEK_DATE" visibleInAdvancedArea="true"></smartfilterbar:ControlConfiguration>
                     </smartfilterbar:controlConfiguration>

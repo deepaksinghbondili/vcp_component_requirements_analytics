@@ -129,7 +129,7 @@ sap.ui.define([
                         this.smartFilterBar.search();
                     }
                 }
-                else if (id.includes("idChartHeat1")){
+                else if (id.includes("idChartHeat1")) {
                     var diamensions = this.byId("idChartHeat1").getVisibleDimensions();
                     for (let i = 0; i < diamensions.length; i++) {
                         fieldName = this.byId("idChartHeat1").getVisibleDimensions()[i];
@@ -296,6 +296,30 @@ sap.ui.define([
                 } else {
                     that.navCont.to(that.byId("p2"), "fade");
                     card.getHeader().setTitle("Assembly Requirements");
+                }
+            },
+            onClear: function () {
+                var key = this.smartFilterBar.getControlByKey("WEEK_DATE");
+                if (key) {
+                    var today = new Date();
+                    var twoMonthsLater = new Date();
+                    twoMonthsLater.setMonth(today.getMonth() + 2);
+                    var obj = {
+                        exclude: false,
+                        keyField: "WEEK_DATE",
+                        operation: "BT",
+                        tokenText: today.toISOString().split("T")[0] + "-" + twoMonthsLater.toISOString().split("T")[0],
+                        value1: today,
+                        value2: twoMonthsLater
+                    }
+                    var arr = [];
+                    arr.push(obj);
+                    this.smartFilterBar.setFilterData({
+                        WEEK_DATE: {
+                            ranges: arr
+                        }
+                    });
+                    this.smartFilterBar.search();
                 }
             }
         });
