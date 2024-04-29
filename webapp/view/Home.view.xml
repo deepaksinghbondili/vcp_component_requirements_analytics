@@ -1,82 +1,82 @@
 <mvc:View xmlns:smartmultiedit="sap.ui.comp.smartmultiedit" xmlns:smartlist="sap.ui.comp.smartlist" xmlns:cards="sap.f.cards" xmlns:layout="sap.ui.layout" xmlns:cssgrid="sap.ui.layout.cssgrid" xmlns:table="sap.ui.table" xmlns:smarttable="sap.ui.comp.smarttable" xmlns:chart="sap.chart" xmlns:smartchart="sap.ui.comp.smartchart" xmlns:smartvariants="sap.ui.comp.smartvariants" xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:f="sap.f" controllerName="vcpapp.vcpcomponentrequirements.controller.Home" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-     <f:DynamicPage id="dynamicPage">
-            <f:title>
-                <f:DynamicPageTitle>
-                    <f:heading>
-                        <smartvariants:SmartVariantManagement id="PageVariant" persistencyKey="PageVariant" showShare="true" showExecuteOnSelection="true"/>
-                    </f:heading>
-                </f:DynamicPageTitle>
-            </f:title>
-            <f:header>
-                <f:DynamicPageHeader>
-                    <smartfilterbar:SmartFilterBar id="smartFilterBar" entitySet="getComponentReq" showClearOnFB="true" liveMode="true" persistencyKey="PKeyFilterbar" smartVariant="PageVariant">
-                        <smartfilterbar:controlConfiguration>
-                            <smartfilterbar:ControlConfiguration key="WEEK_DATE" visibleInAdvancedArea="true"></smartfilterbar:ControlConfiguration>
-                        </smartfilterbar:controlConfiguration>
-                    </smartfilterbar:SmartFilterBar>
-                </f:DynamicPageHeader>
-            </f:header>
-            <f:content>
-                <VBox>
-                    <Panel expandable="true" expanded="false" backgroundDesign="Transparent">
-                        <HBox justifyContent="SpaceBetween">
-                            <f:Card id="card1" width="35vw" height="34.5em">
+    <f:DynamicPage id="dynamicPage">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <smartvariants:SmartVariantManagement id="PageVariant" persistencyKey="PageVariant" showShare="true" showExecuteOnSelection="true"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader>
+                <smartfilterbar:SmartFilterBar id="smartFilterBar" entitySet="getComponentReq" showClearOnFB="true" liveMode="true" persistencyKey="PKeyFilterbar" smartVariant="PageVariant">
+                    <smartfilterbar:controlConfiguration>
+                        <smartfilterbar:ControlConfiguration key="WEEK_DATE" visibleInAdvancedArea="true"></smartfilterbar:ControlConfiguration>
+                    </smartfilterbar:controlConfiguration>
+                </smartfilterbar:SmartFilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <Panel expandable="true" expanded="false" backgroundDesign="Transparent">
+                    <HBox justifyContent="SpaceBetween">
+                        <f:Card id="card1" width="35vw" height="50.6vh">
+                            <f:header>
+                                <cards:Header title="Assembly Components Quantity" iconSrc="sap-icon://bar-chart"/>
+                            </f:header>
+                            <f:content>
+                                <smartchart:SmartChart height="20vw" width="100%" smartFilterId="smartFilterBar" persistencyKey="PKeyChart" smartVariant="PageVariant" entitySet="getComponentReq" showToolbar="false" legendVisible="false" data:chartQualifier="bar">
+                                    <chart:Chart id="idChartBar" selectData="onCardChartItem" deselectData="onCardChartItem" width="100%" height="20vw"/>
+                                </smartchart:SmartChart>
+                            </f:content>
+                        </f:Card>
+                        <VBox>
+                            <Bar>
+                                <contentRight>
+                                    <SegmentedButton id="idSegBtnCard2" selectionChange="onSegBtnChange">
+                                        <items>
+                                            <SegmentedButtonItem id="idCQbtn" key="CQ" text="Component"></SegmentedButtonItem>
+                                            <SegmentedButtonItem id="idACQbtn" key="ACQ" text="Assembly"></SegmentedButtonItem>
+                                        </items>
+                                    </SegmentedButton>
+                                </contentRight>
+                            </Bar>
+                            <f:Card id="card2" width="55vw" height="auto">
                                 <f:header>
-                                    <cards:Header title="Assembly Components Quantity" iconSrc="sap-icon://bar-chart"/>
+                                    <cards:Header title="Components Requirements" iconSrc="sap-icon://heatmap-chart"/>
                                 </f:header>
                                 <f:content>
-                                    <smartchart:SmartChart height="20vw" width="100%" smartFilterId="smartFilterBar" persistencyKey="PKeyChart" smartVariant="PageVariant" entitySet="getComponentReq" showToolbar="false" legendVisible="false" data:chartQualifier="bar">
-                                        <chart:Chart id="idChartBar" selectData="onCardChartItem" deselectData="onCardChartItem" width="100%" height="20vw"/>
-                                    </smartchart:SmartChart>
+                                    <NavContainer navigationFinished="onNavigationFinished" id="navCon" width="98%" height="45vh" class="navContainerControl sapUiSmallMarginBottom">
+                                        <Page id="p1" showHeader="false" backgroundDesign="Solid">
+                                            <content>
+                                                <smartchart:SmartChart height="20vw" width="100%" smartFilterId="smartFilterBar" entitySet="getComponentReq" showToolbar="false" legendVisible="false" persistencyKey="PKeyChart" smartVariant="PageVariant" data:chartQualifier="heat1">
+                                                    <chart:Chart id="idChartHeat1" selectData="onCardChartItem" deselectData="onCardChartItem" width="100%" height="20vw"/>
+                                                </smartchart:SmartChart>
+                                            </content>
+                                        </Page>
+                                        <Page id="p2" showHeader="false" backgroundDesign="Solid">
+                                            <content>
+                                                <smartchart:SmartChart height="20vw" width="100%" smartFilterId="smartFilterBar" entitySet="getComponentReq" showToolbar="false" legendVisible="false" persistencyKey="PKeyChart" smartVariant="PageVariant" data:chartQualifier="heat2">
+                                                    <chart:Chart id="idChartHeat2" selectData="onCardChartItem" deselectData="onCardChartItem" width="100%" height="20vw"/>
+                                                </smartchart:SmartChart>
+                                            </content>
+                                        </Page>
+                                    </NavContainer>
                                 </f:content>
                             </f:Card>
-                            <VBox>
-                                <Bar>
-                                    <contentRight>
-                                        <SegmentedButton id="idSegBtnCard2" selectionChange="onSegBtnChange">
-                                            <items>
-                                                <SegmentedButtonItem id="idCQbtn" key="CQ" text="Component"></SegmentedButtonItem>
-                                                <SegmentedButtonItem id="idACQbtn" key="ACQ" text="Assembly"></SegmentedButtonItem>
-                                            </items>
-                                        </SegmentedButton>
-                                    </contentRight>
-                                </Bar>
-                                <f:Card id="card2" width="55vw" height="auto">
-                                    <f:header>
-                                        <cards:Header title="Components Requirements" iconSrc="sap-icon://heatmap-chart"/>
-                                    </f:header>
-                                    <f:content>
-                                        <NavContainer navigationFinished="onNavigationFinished" id="navCon" width="98%" height="26.7em" class="navContainerControl sapUiSmallMarginBottom">
-                                            <Page id="p1" showHeader="false">
-                                                <content>
-                                                    <smartchart:SmartChart height="20vw" width="100%" smartFilterId="smartFilterBar" entitySet="getComponentReq" showToolbar="false" legendVisible="false" persistencyKey="PKeyChart" smartVariant="PageVariant" data:chartQualifier="heat1">
-                                                        <chart:Chart id="idChartHeat1" selectData="onCardChartItem" deselectData="onCardChartItem" width="100%" height="20vw"/>
-                                                    </smartchart:SmartChart>
-                                                </content>
-                                            </Page>
-                                            <Page id="p2" showHeader="false">
-                                                <content>
-                                                    <smartchart:SmartChart height="20vw" width="100%" smartFilterId="smartFilterBar" entitySet="getComponentReq" showToolbar="false" legendVisible="false" persistencyKey="PKeyChart" smartVariant="PageVariant" data:chartQualifier="heat2">
-                                                        <chart:Chart id="idChartHeat2" selectData="onCardChartItem" deselectData="onCardChartItem" width="100%" height="20vw"/>
-                                                    </smartchart:SmartChart>
-                                                </content>
-                                            </Page>
-                                        </NavContainer>
-                                    </f:content>
-                                </f:Card>
-                            </VBox>
-                        </HBox>
-                    </Panel>
-                    <Panel expanded="true" height="40vw" class="panel">
-                        <smartchart:SmartChart id="smartChart" class="mainChart" height="30vw" smartFilterId="smartFilterBar" showDownloadButton="true" enableAutoBinding="true" entitySet="getComponentReq" smartVariant="PageVariant" toolbarStyle="Clear" persistencyKey="PKeyChart" legendVisible="false" backgroundDesign="Transparent" useVariantManagement="true" useChartPersonalisation="true" header="{i18n>chartTitle}" showFullScreenButton="false" selectionMode="Multi" showDrillBreadcrumbs="true" showSemanticNavigationButton="false">
-                            <smartchart:layoutData/>
-                            <chart:Chart id="idChart" selectData="onSelectChartItem" deselectData="onSelectChartItem" width="100%" height="30vw"/>
-                        </smartchart:SmartChart>
-                    </Panel>
-                    <smarttable:SmartTable id="smartTable" height="auto" width="100%" class="customTable" backgroundDesign="Transparent" displayInline="true" enableAutoBinding="true" entitySet="getComponentReq" smartFilterId="smartFilterBar" tableType="AnalyticalTable" smartVariant="PageVariant" persistencyKey="PKeyTable" useVariantManagement="true" header="Items" showRowCount="true" enableAutoColumnWidth="true" showFullScreenButton="true" beforeRebindTable="onBeforeReBind">
-                        <table:AnalyticalTable id="idTable" rowSelectionChange="onTableSelection" selectionMode="Single"/>
-                    </smarttable:SmartTable>
-                </VBox>
-            </f:content>
-        </f:DynamicPage>
+                        </VBox>
+                    </HBox>
+                </Panel>
+                <Panel expanded="true" height="40vw" class="panel">
+                    <smartchart:SmartChart id="smartChart" class="mainChart" height="30vw" smartFilterId="smartFilterBar" showDownloadButton="true" enableAutoBinding="true" entitySet="getComponentReq" smartVariant="PageVariant" toolbarStyle="Clear" persistencyKey="PKeyChart" legendVisible="false" backgroundDesign="Transparent" useVariantManagement="true" useChartPersonalisation="true" header="{i18n>chartTitle}" showFullScreenButton="false" selectionMode="Multi" showDrillBreadcrumbs="true" showSemanticNavigationButton="false">
+                        <smartchart:layoutData/>
+                        <chart:Chart id="idChart" selectData="onSelectChartItem" deselectData="onSelectChartItem" width="100%" height="30vw"/>
+                    </smartchart:SmartChart>
+                </Panel>
+                <smarttable:SmartTable id="smartTable" height="auto" width="100%" class="customTable" backgroundDesign="Transparent" displayInline="true" enableAutoBinding="true" entitySet="getComponentReq" smartFilterId="smartFilterBar" tableType="AnalyticalTable" smartVariant="PageVariant" persistencyKey="PKeyTable" useVariantManagement="true" header="Items" showRowCount="true" enableAutoColumnWidth="true" showFullScreenButton="true" beforeRebindTable="onBeforeReBind">
+                    <table:AnalyticalTable id="idTable" rowSelectionChange="onTableSelection" selectionMode="Single"/>
+                </smarttable:SmartTable>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>
