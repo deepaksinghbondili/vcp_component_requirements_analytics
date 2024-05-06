@@ -18,9 +18,9 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
     </edmx:Reference>
-    <edmx:DataServices m:DataServiceVersion="2.0">
+    <edmx:DataServices>
         <Schema Namespace="local" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <Annotations Target="Analytic.getComponentReq " xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="UI.PresentationVariant">
                     <Record Type="UI.PresentationVariantType">
                         <PropertyValue Property="SortOrder">
@@ -232,19 +232,19 @@
                     </Collection>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /ID__" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/ID__" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /LOCATION_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/LOCATION_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Demand Location"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /PRODUCT_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/PRODUCT_ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Product ID"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -285,16 +285,16 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /WEEK_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/WEEK_DATE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Week Date"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /FACTORY_LOC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/FACTORY_LOC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Factory location"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -334,12 +334,12 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Version"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterIn">
@@ -379,12 +379,12 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /SCENARIO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/SCENARIO" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Scenario"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterIn">
@@ -424,12 +424,12 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /ASSEMBLY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/ASSEMBLY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Assembly"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -474,12 +474,12 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /COMPONENT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/COMPONENT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Component"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -523,20 +523,20 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /MODEL_VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/MODEL_VERSION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Model Version"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /IBP_DEMAND" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/IBP_DEMAND" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Ibp Demand"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /ASMB_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/ASMB_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Assembly Description"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -581,12 +581,12 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /COMP_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/COMP_DESC" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Component Description"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -630,12 +630,12 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /STRUC_NODE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/STRUC_NODE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Structure Node"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="getComponentReq "/>
+                        <PropertyValue Property="CollectionPath" String="getComponentReq"/>
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterIn">
@@ -679,19 +679,19 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /ASM_COM_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/ASM_COM_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Measure" Bool="true"/>
                 <Annotation Term="Common.Label" String="Assembly Component Quantity"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /COMP_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/COMP_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Measure" Bool="true"/>
                 <Annotation Term="Common.Label" String="Component Quantity Req"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /ROW_COUNT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/ROW_COUNT" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Measure" Bool="true"/>
                 <Annotation Term="Common.Label" String="COUNT"/>
             </Annotations>
-            <Annotations Target="Analytic.getComponentReq /ACT_ASSEM_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="Analytic.getComponentReq/ACT_ASSEM_QTY" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="Analytics.Measure" Bool="true"/>
                 <Annotation Term="Common.Label" String="Assembly Quantity Req"/>
             </Annotations>
