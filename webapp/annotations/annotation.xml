@@ -18,7 +18,7 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
         <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
     </edmx:Reference>
-    <edmx:DataServices>
+    <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="local" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <Annotations Target="Analytic.getComponentReq " xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="UI.PresentationVariant">
