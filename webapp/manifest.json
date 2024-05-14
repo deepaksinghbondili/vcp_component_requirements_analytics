@@ -68,7 +68,7 @@
   "sap.ui5": {
     "flexEnabled": false,
     "dependencies": {
-      "minUI5Version": "1.120.1",
+      "minUI5Version": "1.117.1",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -152,6 +152,7 @@
     "sap.platform.cf": {
         "oAuthScopes": [
             "$XSAPPNAME.User"
-        ]
+        ],
+        "ui5VersionNumber": "1.117.1"
     }
 }
